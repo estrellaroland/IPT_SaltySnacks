@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { IonApp, IonSplitPane, IonMenu, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonIcon, IonLabel, IonRouterOutlet, IonMenuToggle } from '@ionic/angular/standalone';
+import { IonApp, IonSplitPane, IonMenu, IonHeader, IonToolbar, IonTitle, IonContent, IonList, IonItem, IonIcon, IonLabel, IonRouterOutlet, IonMenuToggle, IonButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { home, basket, cart, receipt, person, informationCircle, peopleCircle } from 'ionicons/icons';
+import { home, basket, cart, receipt, person, informationCircle, peopleCircle, logOut } from 'ionicons/icons';
+import { AuthService, User } from './services/auth.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterModule,
     IonApp,
     IonSplitPane,
@@ -21,7 +27,8 @@ import { home, basket, cart, receipt, person, informationCircle, peopleCircle } 
     IonIcon,
     IonLabel,
     IonRouterOutlet,
-    IonMenuToggle
+    IonMenuToggle,
+    IonButton
   ],
   template: `
     <ion-app>
@@ -33,6 +40,28 @@ import { home, basket, cart, receipt, person, informationCircle, peopleCircle } 
             </ion-toolbar>
           </ion-header>
           <ion-content>
+            <div *ngIf="currentUser" class="user-section">
+              <div class="user-info">
+                <ion-icon name="person" class="user-icon"></ion-icon>
+                <div>
+                  <p class="user-email">{{ currentUser.email }}</p>
+                </div>
+              </div>
+              <ion-button (click)="logout()" fill="clear" color="danger" size="small" class="logout-btn">
+                <ion-icon slot="start" name="log-out"></ion-icon>
+                Logout
+              </ion-button>
+            </div>
+
+            <div *ngIf="!currentUser" class="auth-section">
+              <ion-button routerLink="/login" expand="block" color="warning" size="small" class="auth-btn">
+                Sign In
+              </ion-button>
+              <ion-button routerLink="/register" expand="block" fill="outline" color="warning" size="small" class="auth-btn">
+                Register
+              </ion-button>
+            </div>
+
             <ion-list lines="none" class="menu-list">
               <ion-menu-toggle autoHide="false">
                 <ion-item routerLink="/home" routerLinkActive="active-item" [routerLinkActiveOptions]="{exact: true}" button detail="false" class="menu-item">
@@ -93,6 +122,49 @@ import { home, basket, cart, receipt, person, informationCircle, peopleCircle } 
     </ion-app>
   `,
   styles: [`
+    .user-section {
+      padding: 16px;
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+      border-radius: 8px;
+      margin: 12px;
+      color: white;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .user-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .user-email {
+      margin: 0;
+      font-size: 0.875rem;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    .logout-btn {
+      width: 100%;
+    }
+
+    .auth-section {
+      padding: 12px;
+      margin: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .auth-btn {
+      font-size: 0.875rem;
+    }
+
     .menu-list {
       padding: 16px 0;
     }
@@ -128,8 +200,34 @@ import { home, basket, cart, receipt, person, informationCircle, peopleCircle } 
     }
   `]
 })
-export class AppComponent {
-  constructor() {
-    addIcons({ home, basket, cart, receipt, person, informationCircle, peopleCircle });
+export class AppComponent implements OnInit, OnDestroy {
+  currentUser: User | null = null;
+  private destroy$ = new Subject<void>();
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    addIcons({ home, basket, cart, receipt, person, informationCircle, peopleCircle, logOut });
+  }
+
+  ngOnInit() {
+    this.authService.currentUser$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(user => {
+        this.currentUser = user;
+      });
+
+    this.authService.checkAuthStatus();
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  async logout() {
+    await this.authService.signOut();
+    this.router.navigate(['/home']);
   }
 }
