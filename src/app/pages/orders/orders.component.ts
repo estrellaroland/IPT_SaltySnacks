@@ -93,7 +93,7 @@ import { SupabaseService } from '../../services/supabase.service';
 
               <div class="order-total">
                 <span class="total-label">Total Amount:</span>
-                <span class="total-amount">\${{ order.total_amount }}</span>
+                <span class="total-amount">\₱{{ order.total_amount }}</span>
               </div>
             </ion-card-content>
           </ion-card>

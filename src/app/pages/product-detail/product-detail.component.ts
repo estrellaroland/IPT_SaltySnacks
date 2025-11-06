@@ -51,7 +51,7 @@ import { SupabaseService } from '../../services/supabase.service';
             <div class="product-meta">
               <div class="meta-item">
                 <span class="meta-label">Price</span>
-                <span class="meta-value price">\${{ product.price }}</span>
+                <span class="meta-value price">\₱{{ product.price }}</span>
               </div>
               <div class="meta-item">
                 <span class="meta-label">Stock</span>

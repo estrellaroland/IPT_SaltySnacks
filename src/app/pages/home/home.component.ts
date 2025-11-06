@@ -55,14 +55,7 @@ import { basket, cart, arrowForward } from 'ionicons/icons';
           </ion-card-content>
         </ion-card>
 
-        <ion-card class="feature-card card-hover">
-          <ion-card-header>
-            <ion-card-title>🚚 Fast Delivery</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            Get your favorite snacks delivered quickly right to your doorstep.
-          </ion-card-content>
-        </ion-card>
+        
 
         <ion-card class="feature-card card-hover">
           <ion-card-header>

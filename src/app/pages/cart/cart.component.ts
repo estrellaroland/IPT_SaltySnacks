@@ -59,7 +59,7 @@ import { SupabaseService } from '../../services/supabase.service';
                 <div class="item-image" [style.background-image]="'url(' + item.products.image_url + ')'"></div>
                 <div class="item-details">
                   <h3 class="item-name">{{ item.products.name }}</h3>
-                  <p class="item-price">\${{ item.products.price }}</p>
+                  <p class="item-price">\₱{{ item.products.price }}</p>
                   <div class="quantity-controls">
                     <ion-button
                       (click)="decreaseQuantity(item)"
@@ -79,7 +79,7 @@ import { SupabaseService } from '../../services/supabase.service';
                   </div>
                 </div>
                 <div class="item-actions">
-                  <p class="item-total">\${{ (item.products.price * item.quantity).toFixed(2) }}</p>
+                  <p class="item-total">\₱{{ (item.products.price * item.quantity).toFixed(2) }}</p>
                   <ion-button
                     (click)="removeItem(item)"
                     fill="clear"
@@ -99,16 +99,16 @@ import { SupabaseService } from '../../services/supabase.service';
             <ion-card-content>
               <div class="summary-row">
                 <span>Subtotal:</span>
-                <span>\${{ getSubtotal().toFixed(2) }}</span>
+                <span>\₱{{ getSubtotal().toFixed(2) }}</span>
               </div>
               <div class="summary-row">
                 <span>Tax (8%):</span>
-                <span>\${{ getTax().toFixed(2) }}</span>
+                <span>\₱{{ getTax().toFixed(2) }}</span>
               </div>
               <div class="summary-divider"></div>
               <div class="summary-row total">
                 <span>Total:</span>
-                <span>\${{ getTotal().toFixed(2) }}</span>
+                <span>\₱{{ getTotal().toFixed(2) }}</span>
               </div>
               <ion-button
                 (click)="checkout()"

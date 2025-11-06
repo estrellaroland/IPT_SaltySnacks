@@ -56,7 +56,7 @@ import { SupabaseService } from '../../services/supabase.service';
           <ion-card-content>
             <p class="product-description">{{ product.description }}</p>
             <div class="product-footer">
-              <span class="product-price">\${{ product.price }}</span>
+              <span class="product-price">\₱{{ product.price }}</span>
               <div class="product-actions">
                 <ion-button
                   [routerLink]="['/products', product.id]"
@@ -210,7 +210,7 @@ export class ProductsComponent implements OnInit {
   async addToCart(product: any) {
     try {
       await this.supabase.addToCart(product.id, 1);
-      this.toastMessage = `${product.name} added to cart!`;
+      this.toastMessage = `₱{product.name} added to cart!`;
       this.showToast = true;
     } catch (error) {
       console.error('Error adding to cart:', error);

@@ -39,6 +39,7 @@ import { person, code, colorPalette } from 'ionicons/icons';
         <div class="developers-grid">
           <ion-card class="developer-card card-hover">
             <div class="developer-avatar">
+                <img src="https://i.ibb.co/27GkMfJ7/image.png" alt="Roland Angelo Estrella" />
               <ion-icon name="person"></ion-icon>
             </div>
             <ion-card-header>
@@ -47,17 +48,18 @@ import { person, code, colorPalette } from 'ionicons/icons';
             <ion-card-content>
               <div class="role">
                 <ion-icon name="color-palette"></ion-icon>
-                <span>Developer / UI Designer</span>
+                <span>Developer / UI Designer / Backend Integration</span>
               </div>
               <p class="bio">
-                Responsible for crafting the beautiful and intuitive user interface that makes
-                SaltySnacks a pleasure to use. Roland focused on creating a responsive,
-                modern design with smooth animations and excellent user experience.
+                
               </p>
               <div class="skills">
                 <span class="skill-badge">UI Design</span>
                 <span class="skill-badge">Angular</span>
                 <span class="skill-badge">Ionic</span>
+                <span class="skill-badge">Frontend</span>
+                <span class="skill-badge">Backend</span>
+                <span class="skill-badge">Database</span>
               </div>
             </ion-card-content>
           </ion-card>
@@ -72,17 +74,15 @@ import { person, code, colorPalette } from 'ionicons/icons';
             <ion-card-content>
               <div class="role">
                 <ion-icon name="code"></ion-icon>
-                <span>Developer / Backend Integration</span>
+                <span>Developer</span>
               </div>
               <p class="bio">
-                Specialized in backend integration and database management. Sean implemented
-                the Supabase integration, handling all data operations for products, cart,
-                and order management to ensure reliable and efficient data flow.
+              
               </p>
               <div class="skills">
-                <span class="skill-badge">Supabase</span>
+                
                 <span class="skill-badge">Backend</span>
-                <span class="skill-badge">Database</span>
+                
               </div>
             </ion-card-content>
           </ion-card>
@@ -90,32 +90,25 @@ import { person, code, colorPalette } from 'ionicons/icons';
 
         <ion-card class="team-card">
           <ion-card-header>
-            <ion-card-title>Project Overview</ion-card-title>
+            <ion-card-title></ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p>
-              This e-commerce application was developed as a collaborative project to demonstrate
-              proficiency in modern web technologies. The team worked together to create a fully
-              functional shopping experience with features including:
+              
             </p>
             <ul>
-              <li>Product catalog with detailed views</li>
-              <li>Shopping cart with quantity management</li>
-              <li>Order processing and transaction history</li>
-              <li>Responsive design for all devices</li>
-              <li>Smooth animations and transitions</li>
+              
             </ul>
           </ion-card-content>
         </ion-card>
 
         <ion-card class="contact-card">
           <ion-card-header>
-            <ion-card-title>Get In Touch</ion-card-title>
+            <ion-card-title></ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <p>
-              Interested in learning more about this project or discussing potential collaborations?
-              Feel free to reach out to the development team!
+              
             </p>
           </ion-card-content>
         </ion-card>
@@ -162,21 +155,21 @@ import { person, code, colorPalette } from 'ionicons/icons';
       text-align: center;
     }
 
-    .developer-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 24px auto 20px;
-    }
+   .developer-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16px;
+}
 
-    .developer-avatar ion-icon {
-      font-size: 70px;
-      color: white;
-    }
+.developer-avatar img {
+  width: 100px;       /* adjust size as you like */
+  height: 100px;
+  border-radius: 50%; /* makes it circular */
+  object-fit: cover;  /* keeps proportions nice */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
 
     .developer-card ion-card-title {
       color: #1f2937;

@@ -71,13 +71,13 @@ import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent,
 
         <ion-card class="about-card">
           <ion-card-header>
-            <ion-card-title>Technologies Used</ion-card-title>
+            <ion-card-title></ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <ul class="tech-list">
-              <li><strong>Ionic Framework</strong> - For responsive UI and cross-platform design</li>
-              <li><strong>Angular</strong> - For component-based front-end logic and interactions</li>
-              <li><strong>Supabase</strong> - For backend database and real-time data handling</li>
+              <li><strong></strong> </li>
+              <li><strong></strong> </li>
+              <li><strong></strong> </li>
             </ul>
           </ion-card-content>
         </ion-card>
