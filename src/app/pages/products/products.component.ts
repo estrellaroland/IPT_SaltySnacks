@@ -210,7 +210,7 @@ export class ProductsComponent implements OnInit {
   async addToCart(product: any) {
     try {
       await this.supabase.addToCart(product.id, 1);
-      this.toastMessage = `₱{product.name} added to cart!`;
+      this.toastMessage = `${product.name} added to cart!`;
       this.showToast = true;
     } catch (error) {
       console.error('Error adding to cart:', error);
