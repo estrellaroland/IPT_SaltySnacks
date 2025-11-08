@@ -4,8 +4,12 @@ import { authGuard } from './guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'splash',
     pathMatch: 'full'
+  },
+  {
+    path: 'splash',
+    loadComponent: () => import('./pages/splash/splash.component').then(m => m.SplashComponent)
   },
   {
     path: 'home',
